@@ -27,13 +27,34 @@ func TestTwoSum(t *testing.T) {
 			err := fmt.Errorf(`testing twoSum("%v","%d"), expected "%v", but got "%v"`,
 				test.nums, test.target, test.result, result)
 
-			assert.Equal(t, result, test.result, err)
+			assert.ElementsMatch(t, result, test.result, err)
+		})
+	}
+}
+
+func TestTwoSumHashmap(t *testing.T) {
+	for _, test := range tests {
+		testname := fmt.Sprintf(`testing with input "%v", "%d"`, test.nums, test.target)
+
+		t.Run(testname, func(t *testing.T) {
+			result := twoSumHashmap(test.nums, test.target)
+
+			err := fmt.Errorf(`testing twoSum("%v","%d"), expected "%v", but got "%v"`,
+				test.nums, test.target, test.result, result)
+
+			assert.ElementsMatch(t, result, test.result, err)
 		})
 	}
 }
 
 func BenchmarkTwoSum(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		twoSum([]int{98, 3, -8}, 90)
+		twoSum([]int{98, 3, 87}, 90)
+	}
+}
+
+func BenchmarkTwoSumHashmap(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		twoSumHashmap([]int{98, 3, 87}, 90)
 	}
 }

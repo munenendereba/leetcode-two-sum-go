@@ -6,7 +6,7 @@ func main() {
 	nums := []int{3, 2, 4}
 	target := 6
 
-	fmt.Println("the positions", twoSum(nums, target))
+	fmt.Println("the positions", twoSumHashmap(nums, target))
 }
 
 func twoSum(nums []int, target int) []int {
@@ -23,6 +23,25 @@ func twoSum(nums []int, target int) []int {
 				return []int{i, j}
 			}
 		}
+	}
+
+	return []int{}
+}
+
+func twoSumHashmap(nums []int, target int) []int {
+	numbers := make(map[int]int)
+
+	for i, num := range nums {
+		wewant := target - num
+
+		numgot, ok := numbers[wewant]
+
+		if ok {
+			return []int{i, numgot}
+		}
+
+		numbers[num] = i
+
 	}
 
 	return []int{}
