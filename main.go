@@ -10,8 +10,6 @@ func main() {
 }
 
 func twoSum(nums []int, target int) []int {
-	res := []int{}
-
 	for i, num := range nums {
 		for j, num2 := range nums {
 			//a number cannot be repeated
@@ -22,16 +20,10 @@ func twoSum(nums []int, target int) []int {
 			sum := num + num2
 
 			if sum == target {
-				res = append(res, i, j)
-
-				break
+				return []int{i, j}
 			}
-		}
-
-		if len(res) > 0 {
-			break
 		}
 	}
 
-	return res
+	return []int{}
 }
